@@ -1,8 +1,26 @@
-name: runner
-run.name: I am learning GitHub Actions
-on: [pull]
+name: check pull-request
+
+on:
+  pull_request:
+    branches: [main]
+
 jobs:
-  actions/checkout@v2
-  actions/setup-node@v2
-  npm install
-  npm run test
+  Test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: prepare Repository
+      uses: actions/checkout@v2
+
+    - name: use Node.js 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+        cache: 'npm'
+
+    - name: Install Application
+      run: npm install
+
+    - name: Run Integration Tests
+      run: npm run test
