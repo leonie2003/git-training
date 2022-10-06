@@ -1,4 +1,8 @@
-actions/checkout@v2
-actions/setup-node@v2
-npm install
-npm run test
+name: runner
+run.name: I am learning GitHub Actions
+on: [pull]
+jobs:
+  actions/checkout@v2
+  actions/setup-node@v2
+  npm install
+  npm run test
